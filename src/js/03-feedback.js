@@ -25,10 +25,13 @@ function onFormSubmit(e) {
 }
 
 function pickUpFrom() {
-  const textStorage = JSON.parse(localStorage.getItem(STORAGE_MAIL_KEY));
+  let saveStorage = localStorage.getItem(STORAGE_MAIL_KEY);
 
-  if (textStorage) {
-    formEl.email.value = textStorage.email;
-    formEl.message.value = textStorage.message;
+  if (saveStorage) {
+    saveStorage = JSON.parse(saveStorage);
+    Object.entries(saveStorage).forEach(([name, value]) => {
+      fromData[name] = value;
+      formEl.elements[name].value = value;
+    });
   }
 }
