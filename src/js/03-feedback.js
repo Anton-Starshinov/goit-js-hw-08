@@ -3,7 +3,7 @@ import '../css/03-feedback.css';
 import throttle from 'lodash.throttle';
 
 const STORAGE_MAIL_KEY = 'feedback-form-state';
-const fromData = {};
+let fromData = {};
 
 const formEl = document.querySelector('.feedback-form');
 
@@ -19,6 +19,7 @@ function onFormStorage(e) {
 
 function onFormSubmit(e) {
   e.preventDefault();
+  fromData = {};
 
   e.currentTarget.reset();
   localStorage.removeItem(STORAGE_MAIL_KEY);
